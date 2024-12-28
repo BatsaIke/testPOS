@@ -25,7 +25,7 @@ const PORT = process.env.PORT || 5100;
 app.use(express.static(path.join(__dirname, "products/build")));
 
 const corsOptions = {
-    origin: ['http://localhost:3000', ],
+    origin: ['http://localhost:3000',"https://testpos.onrender.com" ],
     credentials: true,
   };
   
