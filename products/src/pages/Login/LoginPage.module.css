@@ -50,8 +50,7 @@
 
 .inputGroup {
   margin-bottom: 20px;
-  border: none; /* Remove all borders */
-
+  border: none;
 }
 
 .inputGroup label {
@@ -67,19 +66,20 @@
   display: flex;
   align-items: center;
 }
+
 .inputGroup input {
   width: 100%;
-  padding: 5px 0; /* Minimal padding for the line style */
+  padding: 5px 0;
   font-size: 1rem;
-  border: none; /* Remove all borders */
-  border-bottom: 1px solid #ccc; /* Add only a bottom border to mimic the line style */
-  outline: none; /* Remove the default focus outline */
-  background-color: transparent; /* Transparent background to match the design */
-  box-sizing: border-box; /* Ensure proper sizing */
+  border: none;
+  border-bottom: 1px solid #ccc;
+  outline: none;
+  background-color: transparent;
+  box-sizing: border-box;
 }
 
 .inputGroup input:focus {
-  border-bottom: 1px solid #16CB7F; /* Green bottom border on focus */
+  border-bottom: 1px solid #16CB7F;
 }
 
 .errorText {
@@ -88,7 +88,6 @@
   margin-left: 10px;
   white-space: nowrap;
 }
-
 
 .loginButton {
   width: 100%;
@@ -104,4 +103,143 @@
 
 .loginButton:hover {
   background-color: #13b16e;
+  color: #F5F5F5;
+}
+
+@media (max-width: 768px) {
+  .loginContainer {
+    flex-direction: column;
+  }
+
+  .leftSection, .rightSection {
+    width: 100%;
+    height: 50%;
+  }
+
+  .leftSection {
+    background-size: cover;
+  }
+
+  .leftSection .logo {
+    font-size: 2.5rem;
+    bottom: 20px;
+    left: 20px;
+  }
+
+  .rightSection {
+    height: auto;
+    padding: 20px;
+  }
+
+  .loginForm {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .loginForm h2 {
+    font-size: 1.8rem;
+  }
+
+  .loginButton {
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .leftSection {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+  }
+
+  .rightSection {
+    width: 100%;
+    height: 100%;
+  }
+
+  .loginForm {
+    max-width: 100%;
+    padding: 10px;
+  }
+
+  .loginForm h2 {
+    font-size: 1.5rem;
+  }
+
+  .loginButton {
+    padding: 10px;
+    font-size: 0.85rem;
+  }
+}
+
+/* Mobile-specific styles for smaller screens (max-width: 768px) */
+@media (max-width: 768px) {
+  .loginContainer {
+    flex-direction: column; /* Stack sections vertically */
+  }
+
+  .leftSection, .rightSection {
+    width: 100%; /* Full width for both sections */
+    height: 50%; /* Equal height for stacked layout */
+  }
+
+  .leftSection {
+    background-size: cover; /* Ensure image covers smaller widths */
+  }
+
+  .leftSection .logo {
+    font-size: 2.5rem; /* Adjust logo size for smaller screens */
+    bottom: 20px; /* Adjust bottom spacing */
+    left: 20px;
+  }
+
+  .rightSection {
+    height: auto; /* Allow form section to adjust dynamically */
+    padding: 20px; /* Add padding for better alignment */
+  }
+
+  .loginForm {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .loginForm h2 {
+    font-size: 1.8rem; /* Adjust heading size */
+  }
+
+  .loginButton {
+    padding: 12px;
+    font-size: 0.9rem; /* Adjust button size */
+  }
+}
+
+/* Extra small devices (max-width: 576px) */
+@media (max-width: 576px) {
+  .leftSection {
+    display: flex; /* Ensure the section remains visible */
+    width: 100%;
+    height: 100%; /* Adjust height */
+    background-size: contain; /* Adjust background image size */
+}
+
+  .rightSection {
+    width: 100%; /* Full width for form */
+    height: 100%; /* Use the entire height for form */
+  }
+
+  .loginForm {
+    max-width: 100%; /* Allow form to take full width */
+    padding: 10px; /* Reduce padding for smaller devices */
+  }
+
+  .loginForm h2 {
+    font-size: 1.5rem; /* Further reduce heading size */
+  }
+
+  .loginButton {
+    padding: 10px;
+    font-size: 0.85rem; /* Further adjust button size */
+  }
 }
