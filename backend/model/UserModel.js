@@ -8,18 +8,17 @@ const UserSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    unique: true,
-  },
-  phone: {
-    type: String,
-    
+    unique: true, // Ensure email uniqueness
   },
   password: {
     type: String,
     required: true,
   },
-  role: { type: String, default: 'user', enum: ['user', 'moderator', 'admin'] },
-
+  role: {
+    type: String,
+    default: "user",
+    enum: ["user", "moderator", "admin"], // Role options
+  },
   avatar: {
     type: String,
   },
@@ -33,10 +32,8 @@ const UserSchema = new mongoose.Schema({
   resetPasswordExpire: {
     type: Date,
   },
-
 });
 
 const User = mongoose.model("user", UserSchema);
 
 module.exports = User;
-

@@ -13,49 +13,42 @@ const mongoose = require("mongoose");
 //@desc test route
 //access public
 const createUserDetails = async (req, res) => {
+  console.log("Data received from frontend:", req.body); // Log incoming data
+
   const errors = validationResult(req);
-  // Check if no errors
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
 
-  const { name, email, phone, password } = req.body;
+  const { name, email, password } = req.body;
 
   try {
-    // Check if the user already exists
-    let user = await User.findOne({
-      $or: [{ email }, { phone }],
-    });
+    console.log("Checking if user exists with email:", email);
+    let user = await User.findOne({ email }); // Check only by email
+    console.log("Existing user found:", user);
 
     if (user) {
       return res.status(401).json({ errors: [{ msg: "User already exists" }] });
     }
 
-    // Get user's gravatar
     const avatar = gravatar.url(email, {
       s: 200,
       r: "pg",
       d: "mm",
     });
 
-    // Generate a unique tokenDigit
-
-    // Create an instance of user with tokenDigit
     user = new User({
       name,
       email,
-      phone,
       password,
       avatar,
     });
 
-    // Encrypt password using bcrypt
     const salt = await bcrypt.genSalt(10);
     user.password = await bcrypt.hash(password, salt);
 
     await user.save();
 
-    // Return JSON Web Token
     const payload = {
       user: {
         id: user._id,
@@ -78,6 +71,8 @@ const createUserDetails = async (req, res) => {
     res.status(500).send("Server error");
   }
 };
+
+
 
 //updated user profile
 const updateUserProfile = async (req, res) => {

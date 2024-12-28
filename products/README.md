@@ -168,5 +168,9 @@ Add these variables to your `.env` file:
  Frontend:
 - `npm start`: Starts the React development server.
 
+link to hosted project 
+https://testpos.onrender.com/admin/home
 
+github 
+https://github.com/BatsaIke/testPOS
 
