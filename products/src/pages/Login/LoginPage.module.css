@@ -1,0 +1,107 @@
+.loginContainer {
+  display: flex;
+  height: 100vh;
+  background-color: #F5F5F5;
+}
+
+.leftSection {
+  width: 50%;
+  background: url('../../images/login.png') no-repeat center center;
+  background-size: contain;
+  background-color: #000;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.leftSection .logo {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  font-size: 3rem;
+  font-family: 'Arial', sans-serif;
+  color: #16CB7F;
+  font-weight: bold;
+}
+
+.rightSection {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+}
+
+.loginForm {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+}
+
+.loginForm h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.inputGroup {
+  margin-bottom: 20px;
+  border: none; /* Remove all borders */
+
+}
+
+.inputGroup label {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 5px;
+  display: block;
+  color: #555;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.inputGroup input {
+  width: 100%;
+  padding: 5px 0; /* Minimal padding for the line style */
+  font-size: 1rem;
+  border: none; /* Remove all borders */
+  border-bottom: 1px solid #ccc; /* Add only a bottom border to mimic the line style */
+  outline: none; /* Remove the default focus outline */
+  background-color: transparent; /* Transparent background to match the design */
+  box-sizing: border-box; /* Ensure proper sizing */
+}
+
+.inputGroup input:focus {
+  border-bottom: 1px solid #16CB7F; /* Green bottom border on focus */
+}
+
+.errorText {
+  font-size: 0.875rem;
+  color: red;
+  margin-left: 10px;
+  white-space: nowrap;
+}
+
+
+.loginButton {
+  width: 100%;
+  padding: 15px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #13b16e;
+  background-color: #80edc0;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.loginButton:hover {
+  background-color: #13b16e;
+}

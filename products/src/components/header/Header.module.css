@@ -1,0 +1,156 @@
+/*************************************
+  OVERALL HEADER
+*************************************/
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 70px; /* adjust if needed */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+/*************************************
+  LEFT: LOGO
+*************************************/
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #16cb7f; /* Green color from screenshot */
+}
+
+/*************************************
+  CENTER: INVISIBLE SEARCH
+*************************************/
+.searchWrapper {
+  position: relative;
+  /* Expand to fill middle space */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(50, 33, 33);
+  padding: 10px 100px;
+  border-radius: 50px;
+}
+
+/* The search icon is centered horizontally next to the placeholder text */
+.searchIcon {
+  position: relative;
+  font-size: 1.1rem;
+  color: #999;
+  pointer-events: none;
+  left: 50px;
+}
+
+/* The "invisible" search input:
+   - No border
+   - Transparent background
+   - Centered placeholder
+*/
+.searchInput {
+  width: 100%;
+  max-width: 400px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  color: #333;
+  border-radius: 150px;
+  text-align: center; /* placeholder & typed text in center */
+  background: transparent;
+}
+
+/* If you want no visible placeholder border at all, ensure no background. 
+   Optionally, we can add a faint underline if you want a subtle line. */
+.searchInput::placeholder {
+  color: #999;    /* grey text for placeholder */
+  font-size: 0.95rem;
+}
+
+/*************************************
+  RIGHT SECTION
+*************************************/
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* CART BUTTON in green, icon + quantity side by side */
+.cartButton {
+  display: flex;
+  align-items: center;
+  background-color: #16cb7f;
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  padding: 0 12px;
+  height: 40px;
+  cursor: pointer;
+  font-size: 1rem;
+  gap: 10px;
+}
+
+.cartIcon {
+  font-size: 1.2rem;
+}
+
+.cartQty {
+  font-size: 1rem;
+}
+
+/*************************************
+  BELL ICON
+*************************************/
+.bellIcon {
+  font-size: 1.3rem;
+  color: #333;
+  cursor: pointer;
+}
+
+/*************************************
+  USER SECTION
+*************************************/
+.userSection {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.userAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.arrowIcon {
+  font-size: 0.9rem;
+  color: #333;
+}
+.mobileMenuIcon {
+  display: none; /* Hidden by default */
+  font-size: 1.5rem;
+  color: #333;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .mobileMenuIcon {
+    display: block; /* Visible only on mobile */
+  }
+
+  .searchWrapper {
+    display: none; /* Hide search bar on mobile */
+  }
+
+  .rightSection {
+    gap: 10px; /* Adjust spacing for smaller screens */
+  }
+}

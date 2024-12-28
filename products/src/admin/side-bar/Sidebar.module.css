@@ -1,0 +1,106 @@
+/***************************************
+  SIDEBAR CONTAINER
+***************************************/
+.sidebar {
+  width: 250px;
+  height: calc(100vh - 75px); /* Adjust to match your fixed header height */
+  position: fixed;
+  top: 75px;   /* Matches header offset */
+  left: 0;
+  background-color: #ffffff;
+  border-right: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Ensures sidebar is on top of main content */
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+}
+
+/***************************************
+  MENU LIST
+***************************************/
+.menuList {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Items left-aligned */
+}
+
+/***************************************
+  MENU ITEM
+***************************************/
+.menuItem {
+  width: calc(100% - 20px); /* Leaves space on left & right */
+  margin: 0 10px;           /* Space on sides */
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #6b6b6b;
+  text-decoration: none;
+  border-radius: 8px; /* Rounded corners for hover highlight */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.menuItem:hover {
+  background-color: #f0f0f0;
+  color: #000; /* Darken text on hover */
+}
+
+/***************************************
+  ACTIVE MENU ITEM
+***************************************/
+.activeMenuItem {
+  background-color: #0DD983; /* Highlight color */
+  color: #fff;               /* White text on highlight */
+}
+
+/***************************************
+  MENU ICON
+***************************************/
+.menuIcon {
+  font-size: 1.2rem;
+  margin-right: 10px;
+  color: inherit; /* Inherits color from .menuItem or .activeMenuItem */
+}
+
+/***************************************
+  RESPONSIVE BREAKPOINTS
+***************************************/
+@media (max-width: 768px) {
+ /***************************************
+  RESPONSIVE BREAKPOINTS
+***************************************/
+@media (max-width: 768px) {
+  .sidebar {
+    display: none; /* Hide the sidebar on screens smaller than 768px */
+  }
+}
+
+
+  .menuItem {
+    font-size: 0.9rem;
+    padding: 10px 15px;
+  }
+
+  .menuIcon {
+    font-size: 1rem;
+    margin-right: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 150px;
+  }
+
+  .menuItem {
+    font-size: 0.8rem;
+    padding: 8px 10px;
+  }
+
+  .menuIcon {
+    font-size: 0.9rem;
+    margin-right: 5px;
+  }
+}

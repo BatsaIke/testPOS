@@ -1,0 +1,74 @@
+.productCard {
+  width: 100%;
+  background-color: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  /* Optional subtle border or shadow to match your brand/design */
+  /* box-shadow: 0 1px 3px rgba(0,0,0,0.1); */
+}
+
+.productCard:hover {
+  transform: translateY(-2px);
+}
+
+/* NEW: highlight if selected */
+.selected {
+  box-shadow: 0 0 0 2px #16cb7f;
+  /* or border: 2px solid #16cb7f; whichever look you prefer */
+}
+
+/* Image container at top */
+.imageContainer {
+  width: 100%;
+  height: 200px; /* Adjust to match your design’s height ratio */
+  overflow: hidden;
+  border-radius: 6px 6px 0 0; /* top corners match card radius */
+}
+
+.productImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Info section under the image */
+.infoSection {
+  padding: 10px 12px; /* some breathing room around text */
+}
+
+/* Row with name on left, rating on right */
+.topRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px; /* small gap before price */
+}
+
+.productName {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #000; /* black text like the screenshot */
+  margin: 0;
+}
+
+.productRating {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #f0ad4e; /* gold star color */
+}
+
+.starIcon {
+  margin-right: 4px;
+}
+
+/* Price directly below top row */
+.productPrice {
+  font-size: 0.95rem;
+  font-weight: bold;
+  color: #043905; /* or #000 if you want black text */
+  margin: 0;
+}

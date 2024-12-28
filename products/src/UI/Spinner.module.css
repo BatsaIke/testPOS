@@ -1,0 +1,16 @@
+/* Spinner.module.css */
+.spinnerContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Full viewport height */
+  }
+  
+  .spinnerText {
+    font-size: 1.2rem;
+    color: #333;
+    margin-top: 20px;
+    text-align: center;
+  }
+  
