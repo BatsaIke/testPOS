@@ -1,5 +1,4 @@
-// DeliveryDetails.jsx
-import React from "react";
+import React, { useState } from "react";
 import styles from "./DeliveryDetails.module.css";
 
 const DeliveryDetails = ({
@@ -8,6 +7,26 @@ const DeliveryDetails = ({
   deliveryLocation,
   setDeliveryLocation,
 }) => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const cities = [
+    "Accra",
+    "Kumasi",
+    "Takoradi",
+    "Tamale",
+    "Cape Coast",
+    "Ho",
+    "Sunyani",
+    "Bolgatanga",
+    "Koforidua",
+    "Wa",
+  ];
+
+  const handleLocationChange = (event) => {
+    setDeliveryLocation(event.target.value);
+    setIsDropdownOpen(false); // Close dropdown after selection
+  };
+
   return (
     <div className={styles.section}>
       <h3 className={styles.sectionHeading}>Delivery Details</h3>
@@ -37,11 +56,27 @@ const DeliveryDetails = ({
           <span className={styles.locationName}>{deliveryLocation}</span>
           <button
             className={styles.changeBtn}
-            onClick={() => setDeliveryLocation("New Location")}
+            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
           >
             Change
           </button>
         </div>
+        {isDropdownOpen && (
+          <select
+            className={styles.cityDropdown}
+            value={deliveryLocation}
+            onChange={handleLocationChange}
+          >
+            <option value="" disabled>
+              Select a city
+            </option>
+            {cities.map((city, index) => (
+              <option key={index} value={city}>
+                {city}
+              </option>
+            ))}
+          </select>
+        )}
       </div>
     </div>
   );

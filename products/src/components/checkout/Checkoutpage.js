@@ -36,6 +36,14 @@ const CheckoutPage = ({ onClose }) => {
       setError("Name and phone number are required.");
       return false;
     }
+    if (paymentMethod === "Momo" && !momoSameAsPhone && !momoPhoneNumber.trim()) {
+      setError("Please provide a valid Momo number.");
+      return false;
+    }
+    if (deliveryOption === "Delivery" && !deliveryLocation.trim()) {
+      setError("Delivery location is required for delivery.");
+      return false;
+    }
     return true;
   };
 

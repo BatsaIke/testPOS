@@ -13,7 +13,6 @@ const mongoose = require("mongoose");
 //@desc test route
 //access public
 const createUserDetails = async (req, res) => {
-  console.log("Data received from frontend:", req.body); // Log incoming data
 
   const errors = validationResult(req);
   if (!errors.isEmpty()) {

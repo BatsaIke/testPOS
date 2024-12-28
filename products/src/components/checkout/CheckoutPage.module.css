@@ -76,3 +76,11 @@
 .payButton:hover {
   background-color: #0bb773;
 }
+
+.errorMessage {
+  color: red;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-top: 10px;
+  text-align: center;
+}

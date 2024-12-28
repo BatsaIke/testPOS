@@ -141,6 +141,34 @@
   cursor: pointer;
 }
 
+.dropdownMenu {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.dropdownItem {
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #333;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+}
+
+.dropdownItem:hover {
+  background-color: #f5f5f5;
+  color: #16cb7f;
+}
+
+
 @media (max-width: 768px) {
   .mobileMenuIcon {
     display: block; /* Visible only on mobile */

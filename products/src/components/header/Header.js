@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useState, useRef, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { logout } from "../../redux/slices/authSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSearch,
@@ -18,11 +19,14 @@ import MobileMenu from "./MobileMenu";
 
 const Header = () => {
   const cartQuantity = useSelector((state) => state.cart.totalQuantity) || 0;
-  const user = useSelector((state) => state.auth.user); // Fetch logged-in user details
+  const user = useSelector((state) => state.auth.user);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // State for mobile menu visibility
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef();
 
   const handleCartClick = () => {
     setIsCheckoutOpen(true);
@@ -33,16 +37,35 @@ const Header = () => {
   };
 
   const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen); // Toggle mobile menu visibility
+    setIsMobileMenuOpen(!isMobileMenuOpen);
   };
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen((prev) => !prev);
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate("/login");
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <>
       <header className={styles.header}>
-        {/* Logo */}
         <div className={styles.logo}>Syst</div>
 
-        {/* Search */}
         <div className={styles.searchWrapper}>
           <FontAwesomeIcon icon={faSearch} className={styles.searchIcon} />
           <input
@@ -52,7 +75,6 @@ const Header = () => {
           />
         </div>
 
-        {/* Right Section */}
         <div className={styles.rightSection}>
           <button className={styles.cartButton} onClick={handleCartClick}>
             <FontAwesomeIcon icon={faShoppingCart} className={styles.cartIcon} />
@@ -61,8 +83,11 @@ const Header = () => {
 
           <FontAwesomeIcon icon={faBell} className={styles.bellIcon} />
 
-          <div className={styles.userSection}>
-            {/* Dynamically display avatar or fallback icon */}
+          <div
+            className={styles.userSection}
+            ref={dropdownRef}
+            onClick={toggleDropdown}
+          >
             {user?.avatar ? (
               <img
                 src={user.avatar}
@@ -76,9 +101,15 @@ const Header = () => {
               />
             )}
             <FontAwesomeIcon icon={faChevronDown} className={styles.arrowIcon} />
+            {isDropdownOpen && (
+              <div className={styles.dropdownMenu}>
+                <button className={styles.dropdownItem} onClick={handleLogout}>
+                  Logout
+                </button>
+              </div>
+            )}
           </div>
 
-          {/* Mobile Menu Icon */}
           <FontAwesomeIcon
             icon={faBars}
             className={styles.mobileMenuIcon}
@@ -87,7 +118,6 @@ const Header = () => {
         </div>
       </header>
 
-      {/* Modal for Checkout */}
       <Modal
         isOpen={isCheckoutOpen}
         onClose={handleCloseCheckout}
@@ -97,7 +127,6 @@ const Header = () => {
         <CheckoutPage onClose={handleCloseCheckout} />
       </Modal>
 
-      {/* Mobile Menu */}
       <MobileMenu isOpen={isMobileMenuOpen} onClose={toggleMobileMenu} />
     </>
   );
