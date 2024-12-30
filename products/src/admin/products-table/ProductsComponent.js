@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "./Products.module.css";
 import { fetchProducts, deleteAProduct } from "../../actions/productActions";
 import ProductsTable from "./ProductsTable";
 import Spinner from "../../UI/Spinner";
+import Pagination from "../../components/pagination/Pagination";
 
 function Products() {
   const dispatch = useDispatch();
@@ -11,6 +12,10 @@ function Products() {
     (state) => state.product
   );
   const products = nestedProducts.products || [];
+
+  // Pagination states
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
 
   useEffect(() => {
     // Load all products on mount
@@ -23,11 +28,18 @@ function Products() {
     dispatch(fetchProducts());
   };
 
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  // Calculate paginated data
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentProducts = products.slice(indexOfFirstItem, indexOfLastItem);
+
   if (loading) {
     return <Spinner />;
   }
-
-  // For demonstration, no search bar or "add" button—matching the screenshot
 
   return (
     <div className={styles.productsContainer}>
@@ -35,19 +47,20 @@ function Products() {
       <h2 className={styles.pageTitle}>Product History</h2>
 
       {/* Products Table */}
-      {products.length > 0 ? (
-        <ProductsTable products={products} onDelete={handleDelete} />
+      {currentProducts.length > 0 ? (
+        <ProductsTable products={currentProducts} onDelete={handleDelete} />
       ) : (
         <p className={styles.noProducts}>No products yet!</p>
       )}
 
-      {/* Pagination row (placeholder). Hook up logic as needed. */}
-      <div className={styles.pagination}>
-        <button className={styles.pageBtnActive}>1</button>
-        <button className={styles.pageBtn}>2</button>
-        <button className={styles.pageBtn}>3</button>
-        <button className={styles.pageBtn}>4</button>
-      </div>
+      {/* Pagination */}
+      {products.length > itemsPerPage && (
+        <Pagination
+          totalPages={Math.ceil(products.length / itemsPerPage)}
+          currentPage={currentPage}
+          onPageChange={handlePageChange}
+        />
+      )}
     </div>
   );
 }

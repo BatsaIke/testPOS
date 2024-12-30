@@ -81,7 +81,34 @@
     margin-top: 20px;
   }
   
-
+  .ordersHeader {
+    display: flex;
+    justify-content: space-between; /* Space between Orders and Filter */
+    align-items: center; /* Align vertically */
+    margin-bottom: 20px;
+  }
+  
+  .filterContainer {
+    display: flex;
+    align-items: center; /* Vertically align label and dropdown */
+    gap: 8px; /* Add space between label and select */
+  }
+  
+  .filterLabel {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-right: 8px;
+  }
+  
+  .filterSelect {
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: #fff;
+    cursor: pointer;
+  }
+  
 @media (max-width: 768px) {
     .ordersContainer {
       margin-left: 0; /* Remove sidebar margin on mobile */
