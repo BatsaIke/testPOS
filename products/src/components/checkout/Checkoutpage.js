@@ -5,9 +5,11 @@ import DeliveryDetails from "./DeliveryDetails";
 import styles from "./CheckoutPage.module.css";
 import { createOrder } from "../../actions/orderActions";
 import { clearCart } from "../../redux/slices/cartSlice";
+import { useNavigate } from "react-router-dom";
 
 const CheckoutPage = ({ onClose }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const cartItems = useSelector((state) => state.cart.items);
   const totalPrice = useSelector((state) => state.cart.totalPrice);
 
@@ -21,15 +23,7 @@ const CheckoutPage = ({ onClose }) => {
   const [deliveryOption, setDeliveryOption] = useState("Delivery");
   const [deliveryLocation, setDeliveryLocation] = useState("Circle");
   const [error, setError] = useState("");
-
-  // If cart is empty, render a fallback message
-  if (cartItems.length === 0) {
-    return (
-      <div className={styles.errorMessage}>
-        Your cart is empty. Please add items to proceed.
-      </div>
-    );
-  }
+  const [successMessage, setSuccessMessage] = useState(false);
 
   const validate = () => {
     if (!name.trim() || !phoneNumber.trim()) {
@@ -74,12 +68,30 @@ const CheckoutPage = ({ onClose }) => {
 
       // Clear the cart on successful order creation
       dispatch(clearCart());
-
-      if (onClose) onClose();
+      setSuccessMessage(true); // Show success message
     } else {
       setError(result.message || "Could not create order.");
     }
   };
+
+  if (successMessage) {
+    return (
+      <div className={styles.successMessage}>
+        <h3>Order placed successfully!</h3>
+        <p>Your order has been placed. You can continue shopping or visit your orders page.</p>
+        <button
+  className={styles.continueButton}
+  onClick={() => {
+    navigate("/"); // Navigate to the homepage
+    onClose(); // Close the modal
+  }}
+>
+  Continue to Homepage
+</button>
+
+      </div>
+    );
+  }
 
   return (
     <div className={styles.checkoutContainer}>

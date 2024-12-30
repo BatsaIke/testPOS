@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { addItemToCart } from "../../redux/slices/cartSlice";
 
 import styles from "./CartPage.module.css";
+import { set_Alert } from "../../actions/alertAction";
 
 const CartPage = ({ product, onClose }) => {
   // Ensure all sizes are included
@@ -46,7 +47,7 @@ const CartPage = ({ product, onClose }) => {
   // Dispatch selected sizes
   const handleAddToCart = () => {
     let orderTotal = 0; // Initialize order total
-
+  
     // Loop through valid sizes and dispatch only variants with quantities > 0
     validVariants.forEach((size) => {
       const variant = product.variants.find((v) => v.size === size);
@@ -54,7 +55,7 @@ const CartPage = ({ product, onClose }) => {
         // Calculate the total price for each variant
         const variantTotal = quantities[size] * variant.price;
         orderTotal += variantTotal;
-
+  
         // Dispatch the variant with its quantity
         dispatch(
           addItemToCart({
@@ -67,13 +68,21 @@ const CartPage = ({ product, onClose }) => {
         );
       }
     });
-
-    console.log("Total Order Amount:", orderTotal);
-
+  
+    if (orderTotal > 0) {
+      // Dispatch alert message if items are added to the cart
+      dispatch(set_Alert(`${product.name} added to cart successfully!`, "success"));
+    } else {
+      // Dispatch alert message if no item is added
+      dispatch(set_Alert("No items selected to add to cart.", "error"));
+    }
+  
+  
     if (onClose) {
       onClose();
     }
   };
+  
 
   return (
     <div className={styles.cartPage}>
